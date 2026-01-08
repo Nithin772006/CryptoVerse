@@ -1,0 +1,224 @@
+/* =========================================
+   1. GLOBAL RESET & FONTS
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+:root {
+    --primary: #00C087;       /* The signature green */
+    --bg-dark: #0b0e11;       /* Dark background */
+    --card-bg: #11141b;       /* Card background */
+    --border: #232830;        /* Subtle borders */
+    --text-gray: #88909c;     /* Gray text */
+    --text-white: #ffffff;
+}
+
+body { 
+    background-color: #05070a; 
+    color: var(--text-white); 
+}
+
+/* =========================================
+   2. LOGIN PAGE STYLES
+   ========================================= */
+.login-body {
+    display: flex; justify-content: center; align-items: center; height: 100vh;
+    background: radial-gradient(circle at center, #1a202c 0%, #05070a 100%);
+}
+.login-container {
+    background: var(--card-bg); padding: 40px; border-radius: 12px;
+    width: 400px; border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.logo-area { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.logo-area h1 { font-size: 20px; }
+.welcome-text { color: var(--text-gray); font-size: 14px; margin-bottom: 30px; }
+
+input {
+    width: 100%; padding: 12px; margin-bottom: 20px;
+    background: #0b0e11; border: 1px solid var(--border);
+    border-radius: 6px; color: white; font-size: 14px;
+}
+input:focus { border-color: var(--primary); outline: none; }
+label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
+
+.btn-primary {
+    width: 100%; padding: 12px; background: var(--primary);
+    border: none; border-radius: 6px; color: #000; font-weight: 700; cursor: pointer;
+    font-size: 14px; transition: 0.2s;
+    display: inline-block; text-align: center;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.signup-link { text-align: center; font-size: 13px; margin-top: 20px; color: var(--text-gray); }
+.signup-link a { color: var(--primary); text-decoration: none; cursor: pointer; }
+
+/* =========================================
+   3. DASHBOARD NAVIGATION
+   ========================================= */
+.dashboard-body nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 40px; border-bottom: 1px solid var(--border); background: var(--bg-dark);
+}
+.logo-section { 
+    display: flex; align-items: center; gap: 10px; cursor: pointer; 
+}
+.logo-icon { 
+    background: var(--primary); width: 32px; height: 32px; border-radius: 6px; 
+    display: flex; align-items: center; justify-content: center; color: black; font-weight: bold; 
+}
+.logo-text { display: flex; flex-direction: column; }
+.brand { font-weight: bold; font-size: 16px; color: white; }
+.tagline { font-size: 10px; letter-spacing: 1px; color: var(--text-gray); }
+
+.nav-links { display: flex; gap: 10px; }
+.nav-links a {
+    color: var(--text-gray); text-decoration: none; font-size: 14px;
+    padding: 8px 16px; border-radius: 6px; transition: 0.2s; font-weight: 500;
+}
+.nav-links a:hover, .nav-links a.active {
+    color: white; background: rgba(255, 255, 255, 0.1);
+}
+
+.user-actions { display: flex; gap: 15px; align-items: center; font-size: 13px; }
+.logout-btn { color: #ef4444; text-decoration: none; font-weight: 600; }
+
+/* =========================================
+   4. MAIN LAYOUT & SECTIONS
+   ========================================= */
+main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+
+/* Animation for switching tabs */
+.view-section { animation: fadeIn 0.3s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- HOME PAGE STYLES --- */
+.hero-center { text-align: center; padding: 60px 20px; }
+.hero-center h1 { font-size: 48px; margin-bottom: 20px; }
+.highlight { color: #3b82f6; } /* Blue highlight */
+
+.hero-buttons { display: flex; gap: 20px; justify-content: center; margin: 40px 0; }
+.big-btn { width: auto; padding: 15px 30px; font-size: 16px; min-width: 160px; }
+
+.btn-secondary {
+    background: transparent; border: 1px solid var(--border);
+    color: white; padding: 15px 30px; border-radius: 6px; cursor: pointer;
+    font-size: 16px; font-weight: bold; transition: 0.2s;
+}
+.btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
+.feature-card {
+    background: var(--card-bg); padding: 30px; border-radius: 12px;
+    border: 1px solid var(--border); text-align: left;
+}
+.feature-card h3 { margin-bottom: 10px; color: var(--primary); display: flex; align-items: center; gap: 8px;}
+
+/* =========================================
+   5. COINS & DASHBOARD ELEMENTS
+   ========================================= */
+.section-label { color: var(--text-gray); font-size: 14px; margin-bottom: 10px; margin-top: 20px;}
+.header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
+
+/* Coin Selector Buttons */
+.coin-selector { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+.coin-btn {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 10px 20px; border-radius: 8px; display: flex; align-items: center; gap: 10px;
+    cursor: pointer; color: white; transition: 0.2s;
+}
+.coin-btn:hover { border-color: #555; }
+.coin-btn.active { border-color: var(--primary); background: rgba(0, 192, 135, 0.1); }
+.coin-btn img { width: 24px; height: 24px; border-radius: 50%; }
+.btn-text { display: flex; flex-direction: column; align-items: flex-start; }
+.ticker { font-weight: bold; font-size: 14px; }
+.name { font-size: 10px; color: var(--text-gray); }
+
+/* Status Bar */
+.status-bar { display: flex; gap: 15px; align-items: center; font-size: 12px; color: var(--text-gray); }
+.dot { width: 8px; height: 8px; background: #555; border-radius: 50%; display: inline-block; }
+.dot.green { background: var(--primary); }
+.refresh-btn { background: none; border: 1px solid var(--border); color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; }
+
+/* Price Card */
+.price-card {
+    background: linear-gradient(180deg, rgba(0,192,135,0.05) 0%, rgba(0,0,0,0) 100%);
+    border: 1px solid var(--primary); border-radius: 12px; padding: 30px; position: relative; margin-bottom: 30px;
+}
+.badge {
+    position: absolute; top: 15px; left: 15px; background: rgba(0,192,135,0.2);
+    color: var(--primary); font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: bold;
+}
+.card-content { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.coin-info { display: flex; gap: 15px; align-items: center; }
+.price-block h1 { font-size: 40px; color: var(--primary); }
+.recommendation { text-align: right; }
+
+.exchange-tag {
+    background: #1a202c; border: none; padding: 8px 16px; border-radius: 20px;
+    color: white; display: flex; align-items: center; gap: 8px; font-weight: bold; margin-left: auto; margin-bottom: 5px;
+}
+.green-text { color: var(--primary); font-weight: bold; }
+
+/* Comparison Table */
+.table-container { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th { text-align: left; color: var(--text-gray); font-size: 12px; padding: 15px; border-bottom: 1px solid var(--border); }
+td { padding: 15px; border-bottom: 1px solid var(--border); font-size: 14px; }
+tr:last-child td { border-bottom: none; }
+.exchange-cell { display: flex; align-items: center; gap: 10px; }
+.status-badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+.cheapest { background: var(--primary); color: black; }
+.expensive { background: var(--border); color: var(--text-gray); }
+
+/* =========================================
+   6. WATCHLIST PAGE
+   ========================================= */
+.watchlist-star {
+    position: absolute; top: 15px; right: 15px;
+    background: rgba(255,255,255,0.1); border: none;
+    color: white; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;
+}
+.watchlist-star.active { color: #FFD700; background: rgba(255, 215, 0, 0.1); }
+
+.watchlist-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px; margin-top: 20px;
+}
+.watch-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 25px; border-radius: 12px; position: relative;
+}
+.watch-card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 18px; }
+.watch-card h1 { font-size: 28px; margin-bottom: 5px; }
+
+/* =========================================
+   7. CHATBOT & SUPPORT PAGES
+   ========================================= */
+.chat-container {
+    max-width: 700px; margin: 0 auto; background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    height: 550px; display: flex; flex-direction: column;
+}
+.chat-header { background: #1a202c; padding: 20px; border-bottom: 1px solid var(--border); }
+.chat-box {
+    flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
+}
+.message { padding: 12px 18px; border-radius: 8px; max-width: 80%; font-size: 14px; line-height: 1.5; }
+.bot-msg { background: #232830; align-self: flex-start; border-top-left-radius: 0; color: #ccc; }
+.user-msg { background: var(--primary); color: #000; align-self: flex-end; border-top-right-radius: 0; font-weight: 500; }
+.chat-input-area {
+    padding: 15px; background: #0b0e11; border-top: 1px solid var(--border);
+    display: flex; gap: 10px;
+}
+
+.support-container, .about-container {
+    max-width: 600px; margin: 0 auto; background: var(--card-bg);
+    padding: 40px; border-radius: 12px; border: 1px solid var(--border);
+}
+.support-form { margin-top: 30px; }
+select, textarea {
+    width: 100%; background: #0b0e11; border: 1px solid var(--border);
+    padding: 12px; border-radius: 6px; color: white; margin-bottom: 20px;
+}
+textarea:focus, select:focus { border-color: var(--primary); outline: none; }
+.about-content { line-height: 1.6; color: #ccc; margin-top: 20px; }

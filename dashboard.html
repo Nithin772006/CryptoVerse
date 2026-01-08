@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoEdge - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <nav>
+        <div class="logo-section" onclick="switchView('home')">
+            <div class="logo-icon">⚡</div>
+            <div class="logo-text">
+                <span class="brand">CryptoEdge</span>
+                <span class="tagline">ARBITRAGE MADE EASY</span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="switchView('home')" id="nav-home" class="active">Home</a>
+            <a href="#" onclick="switchView('coins')" id="nav-coins">Coins</a>
+            <a href="#" onclick="switchView('watchlist')" id="nav-watchlist">Watchlist</a>
+            <a href="#" onclick="switchView('chat')" id="nav-chat">AI Chat</a>
+            <a href="#" onclick="switchView('support')" id="nav-support">Support</a>
+            <a href="#" onclick="switchView('about')" id="nav-about">About Us</a>
+        </div>
+        <div class="user-actions">
+            <span id="user-email">user@example.com</span>
+            <a href="#" class="logout-btn" onclick="handleLogout()">Logout</a>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section id="view-home" class="view-section">
+            <div class="hero-center">
+                <h1>Welcome to <span class="highlight">CryptoEdge</span></h1>
+                <p style="color:#88909c;">The smartest way to find crypto arbitrage opportunities and track your favorite assets.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary big-btn" onclick="switchView('coins')">Start Trading 🚀</button>
+                    <button class="btn-secondary big-btn" onclick="switchView('watchlist')">My Watchlist ⭐</button>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>⚡ Real-time Data</h3>
+                        <p style="color:#88909c;">Live prices from 5 major exchanges.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🤖 AI Assistant</h3>
+                        <p style="color:#88909c;">Ask doubts instantly with our crypto bot.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🛡️ Secure</h3>
+                        <p style="color:#88909c;">Built with industry standard security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-coins" class="view-section" style="display: none;">
+            <div class="header-row">
+                <h2>Market Overview</h2>
+                <div class="status-bar">
+                    <span>🕘 Updated: <span id="last-updated">--:--:--</span></span>
+                    <span class="dot green"></span> Refresh in <span id="countdown">60</span>s
+                    <button class="refresh-btn" onclick="fetchData()">🔄 Now</button>
+                </div>
+            </div>
+
+            <p class="section-label">Select a Coin to Analyze</p>
+            <div class="coin-selector">
+                <button class="coin-btn active" onclick="selectCoin('bitcoin')">
+                    <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="BTC">
+                    <div class="btn-text"><span class="ticker">BTC</span><span class="name">Bitcoin</span></div>
+                </button>
+                <button class="coin-btn" onclick="selectCoin('ethereum')">
+                    <img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH">
+                    <div class="btn-text"><span class="ticker">ETH</span><span class="name">Ethereum</span></div>
+                </button>
+                <button class="coin-btn" onclick="selectCoin('solana')">
+                    <img src="https://assets.coingecko.com/coins/images/4128/small/solana.png" alt="SOL">
+                    <div class="btn-text"><span class="ticker">SOL</span><span class="name">Solana</span></div>
+                </button>
+                <button class="coin-btn" onclick="selectCoin('ripple')">
+                    <img src="https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png" alt="XRP">
+                    <div class="btn-text"><span class="ticker">XRP</span><span class="name">XRP</span></div>
+                </button>
+                <button class="coin-btn" onclick="selectCoin('cardano')">
+                    <img src="https://assets.coingecko.com/coins/images/975/small/cardano.png" alt="ADA">
+                    <div class="btn-text"><span class="ticker">ADA</span><span class="name">Cardano</span></div>
+                </button>
+            </div>
+
+            <div class="price-card">
+                <div class="badge">✨ Best Price Found!</div>
+                <button class="watchlist-star" onclick="toggleWatchlist()">☆ Add to Watchlist</button>
+                
+                <div class="card-content">
+                    <div class="coin-info">
+                        <img id="main-coin-img" src="" width="40">
+                        <div>
+                            <h2 id="main-coin-name">Bitcoin</h2>
+                            <span id="main-coin-ticker">BTC</span>
+                        </div>
+                    </div>
+                    <div class="price-action">
+                        <div class="price-block">
+                            <h1 id="main-price">₹0.00</h1>
+                            <span id="price-change" class="change positive">--%</span>
+                        </div>
+                        <div class="recommendation">
+                            <button class="exchange-tag" id="best-exchange-btn">
+                                <span class="dot green"></span> <span id="best-exchange-name">Binance</span>
+                            </button>
+                            <div class="save-text">Save <span class="green-text">0.5%</span> vs average</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3 id="comparison-title">BTC Price Comparison</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Exchange</th>
+                            <th>Price (INR)</th>
+                            <th>24h Change</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="view-watchlist" class="view-section" style="display: none;">
+            <h2>My Watchlist</h2>
+            <p style="color: #88909c; margin-bottom: 20px;">Your favorite coins at a glance.</p>
+            <div id="watchlist-grid" class="watchlist-grid">
+                <p id="empty-watchlist-msg">No coins in watchlist yet. Go to <a href="#" onclick="switchView('coins')" style="color:#00C087">Coins</a> to add some!</p>
+            </div>
+        </section>
+
+        <section id="view-chat" class="view-section" style="display: none;">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h3>🤖 CryptoBot</h3>
+                    <p style="font-size: 13px; color: #88909c;">Ask me about crypto definitions, safety, or how to use this app.</p>
+                </div>
+                <div class="chat-box" id="chat-box">
+                    <div class="message bot-msg">Hello! I am your CryptoEdge assistant. How can I help you today?</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="handleChatEnter(event)">
+                    <button class="btn-primary" style="width: auto; padding: 0 25px;" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-support" class="view-section" style="display: none;">
+            <div class="support-container">
+                <h2>Contact Support</h2>
+                <p style="color: #88909c;">Have an issue? Send us a message.</p>
+                <form onsubmit="handleSupportSubmit(event)" class="support-form">
+                    <label>Subject</label>
+                    <select id="support-subject">
+                        <option>Technical Issue</option>
+                        <option>Account Help</option>
+                        <option>Feature Request</option>
+                        <option>Other</option>
+                    </select>
+                    
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Describe your issue..." required></textarea>
+                    
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="view-about" class="view-section" style="display: none;">
+            <div class="about-container">
+                <h2>About CryptoEdge</h2>
+                <div class="about-content">
+                    <p>CryptoEdge was born from a simple idea: <strong>Cryptocurrency prices should be transparent.</strong></p>
+                    <p>We realized that different exchanges sell Bitcoin and other coins at slightly different prices. This creates an opportunity called <strong>Arbitrage</strong>.</p>
+                    <p>Our mission is to provide a beginner-friendly platform where anyone can see these price differences in real-time and make smarter trading decisions.</p>
+                    <br>
+                    <h3>Our Team</h3>
+                    <p>We are a passionate team of developers and crypto enthusiasts dedicated to building the best tools for the Indian crypto community.</p>
+                    <br>
+                    <p><em>Built with 💙 for crypto beginners.</em></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
